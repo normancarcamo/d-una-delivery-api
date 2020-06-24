@@ -1,0 +1,350 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0.0",
+    "title" : "D-una Delivery App"
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/normancarcamo/d-una-api/1.0.0",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/orders" : {
+      "get" : {
+        "description" : "Get a list of orders",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Order"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    },
+    "/orders/latest" : {
+      "get" : {
+        "description" : "Get a list of the latest orders",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Order"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    },
+    "/orders/{order}" : {
+      "get" : {
+        "description" : "Get a single order",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/Order"
+            }
+          },
+          "400" : {
+            "description" : "Invalid order supplied"
+          },
+          "404" : {
+            "description" : "Order not found"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updated order",
+        "description" : "This can only be done by the logged in user.",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "order",
+          "in" : "path",
+          "description" : "uuid that need to be updated",
+          "required" : true,
+          "type" : "string",
+          "format" : "uuid"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Updated user object",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Order"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "Invalid order supplied"
+          },
+          "404" : {
+            "description" : "Order not found"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Deliverer" : {
+      "type" : "object",
+      "required" : [ "id", "name", "user" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "format" : "uuid",
+          "example" : "11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000"
+        },
+        "name" : {
+          "$ref" : "#/definitions/Deliverer_name"
+        },
+        "user" : { }
+      }
+    },
+    "User" : {
+      "type" : "object",
+      "required" : [ "email", "id", "password" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "format" : "uuid",
+          "example" : "11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+          "description" : "Needed for references.",
+          "minLength" : 36,
+          "maxLength" : 36,
+          "pattern" : "^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$"
+        },
+        "email" : {
+          "type" : "string",
+          "example" : "john.smith@example.com",
+          "description" : "'this email address is used to log-in to the application using the '\n'valid credentials of the deliverer.'\n'The max length of a string value here would look like this:'\n'first.second_middle_last.99@compumundohipermegaredhomero.com'\n",
+          "minLength" : 60,
+          "maxLength" : 60,
+          "pattern" : "^([a-z])+((\\.|\\_)?([a-z]|[0-9])+)+\\@[a-z](\\w*)(\\.)[a-z]+$"
+        },
+        "password" : {
+          "type" : "string",
+          "example" : "Compumundohipermegaredhomero.2020",
+          "description" : "'The only limits are min of 4 chars and 30 as max, but for the '\n'front-end, we could apply regexps, with a good unobstrusive UX'\n'we can give hints for a better password to the deliverer.'\n\n'For example:'\n\n'// starts with a capital letter'\n'/^[A-Z].*/'\n\n'// includes at least a special character'\n'/(\\W|\\_)/'\n\n'// includes at least a number'\n'/[0-9]/'\n",
+          "minLength" : 4,
+          "maxLength" : 40
+        }
+      }
+    },
+    "Item" : {
+      "type" : "object",
+      "required" : [ "description", "id", "image", "name" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "format" : "uuid",
+          "example" : "11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+          "description" : "Needed for references."
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "Whisky Old Parr",
+          "description" : "This would be the name that is displayed in the details."
+        },
+        "image" : {
+          "description" : "'An image for the item would be good for UX.'\n'This image needs at least a default icon to display'\n'when the item does not have one. - We need to discuss'\n'this later. (remember to remove this large comment)'\n"
+        },
+        "description" : {
+          "type" : "string",
+          "example" : "12 Years 750 ML",
+          "description" : "This would be a short text for its details."
+        }
+      }
+    },
+    "Provider" : {
+      "type" : "object",
+      "required" : [ "address", "id", "items", "name", "timetable" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "format" : "uuid",
+          "example" : "11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+          "description" : "Needed for references."
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "address" : {
+          "$ref" : "#/definitions/Provider_address"
+        },
+        "timetable" : {
+          "$ref" : "#/definitions/Provider_timetable"
+        },
+        "items" : { }
+      }
+    },
+    "Customer" : {
+      "type" : "object",
+      "required" : [ "address", "id", "name", "phone" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "format" : "uuid",
+          "example" : "11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+          "description" : "Needed for references."
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "phone" : {
+          "type" : "string"
+        },
+        "address" : {
+          "$ref" : "#/definitions/Provider_address"
+        }
+      }
+    },
+    "Order" : {
+      "type" : "object",
+      "required" : [ "address", "code", "customer", "id", "items", "provider", "status", "timestamps" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "format" : "uuid",
+          "example" : "11bf5b37-e0b8-42e0-8dcf-dc8c4aefc000",
+          "description" : "Needed for references"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "customer" : { },
+        "provider" : { },
+        "items" : {
+          "type" : "array",
+          "items" : { }
+        },
+        "address" : {
+          "$ref" : "#/definitions/Provider_address"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "'Order status - the stakeholders may need a way to know it.'\n",
+          "enum" : [ "pendingToPickUp", "delivering", "delivered" ]
+        },
+        "comments" : {
+          "type" : "array",
+          "description" : "'This is an experimental feature to collect feedback'\n'about the order from the stakeholders:'\n'deliverer, customer and the provider.'\n",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "timestamps" : {
+          "$ref" : "#/definitions/Order_timestamps"
+        }
+      }
+    },
+    "Deliverer_name" : {
+      "type" : "object",
+      "required" : [ "first", "last" ],
+      "properties" : {
+        "first" : {
+          "type" : "string",
+          "example" : "John"
+        },
+        "last" : {
+          "type" : "string",
+          "example" : "Smith"
+        }
+      }
+    },
+    "Provider_address" : {
+      "type" : "object",
+      "required" : [ "latitude", "location", "longitude" ],
+      "properties" : {
+        "location" : {
+          "type" : "string"
+        },
+        "latitude" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "longitude" : {
+          "type" : "number",
+          "format" : "float"
+        }
+      }
+    },
+    "Provider_timetable" : {
+      "type" : "object",
+      "required" : [ "from", "to" ],
+      "properties" : {
+        "from" : {
+          "type" : "string",
+          "format" : "time",
+          "example" : "08:00",
+          "description" : "Available start time using hours:mins[:secs]",
+          "minLength" : 5,
+          "maxLength" : 5,
+          "pattern" : "^([0-1][0-9]|[2-2][0-3])\\:([0-5][0-9])(\\:[0-5][0-9])?$"
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "time",
+          "example" : "08:00",
+          "description" : "Available end time using hours:mins[:secs]",
+          "minLength" : 5,
+          "maxLength" : 5,
+          "pattern" : "^([0-1][0-9]|[2-2][0-3])\\:([0-5][0-9])(\\:[0-5][0-9])?$"
+        }
+      },
+      "description" : "The deliverer needs to know the availability"
+    },
+    "Order_timestamps" : {
+      "type" : "object",
+      "required" : [ "createdAt", "deliveredAt", "startedAt" ],
+      "properties" : {
+        "createdAt" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "At what time the order was created?"
+        },
+        "startedAt" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "At what time the order was started?"
+        },
+        "deliveredAt" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "At what time the order was delivered?"
+        }
+      }
+    }
+  }
+}
