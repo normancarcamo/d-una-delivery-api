@@ -1,0 +1,64 @@
+### auth ======================================================================
+
+### REGISTER:
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "name": { "first": "Norman", "last": "Carcamo" },
+  "email": "normancarcamo@gmail.com",
+  "password": "compumundohipermegared",
+  "phone": "32359444",
+  "photo": "https://s3.amazonaws.com/uifaces/faces/twitter/yehudab/128.jpg",
+  "address": {
+    "latitude": 14.078505,
+    "streetAddress": "Barrio La Granja",
+    "longitude": -87.209027
+  }
+}
+
+### LOGIN:
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "normancarcamo@gmail.com",
+  "password": "compumundohipermegared"
+}
+
+### LOGOUT:
+DELETE http://localhost:3000/auth/logout
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjBlYmZmMDM5MGRhNzAxNzMzYzcyMTIiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NDgwMzcwOSwiZXhwIjoxNTk0ODAzNzM5LCJhdWQiOiI1ZjBlYmZmMDM5MGRhNzAxNzMzYzcyMTIiLCJpc3MiOiJ4ZWxleC5jbyJ9.Lll6fGLriqeSB0Uz6qauQpqRhzLiFwZlyPBw_y2DBUY
+
+### REFRESH TOKEN:
+POST http://localhost:3000/auth/refresh-token
+content-type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTQ4MDM2MzgsImV4cCI6MTYyNjM2MTIzOCwiYXVkIjoiNWYwZWJmZjAzOTBkYTcwMTczM2M3MjEyIiwiaXNzIjoieGVsZXguY28ifQ.js4ibrHWOcLh93uyaT26oh0wKKUtqmJzDeJ90jPqXWk"
+}
+
+### ping ======================================================================
+
+GET http://localhost:3000/ping
+
+### seed ======================================================================
+
+### If you don't send the request as POST, you get error:
+GET http://localhost:3000/seed
+
+### When the request doesn't include payload, you get ok:
+POST http://localhost:3000/seed
+
+### If you want to generate .json files:
+POST http://localhost:3000/seed
+Content-Type: application/json
+
+{ "files": true }
+
+### If you want to merge the previous data with the new:
+POST http://localhost:3000/seed
+Content-Type: application/json
+
+{ "merge": true }

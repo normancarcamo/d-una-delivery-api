@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "outDir": "../built",
-    "baseUrl": "."
-  },
-  "extends": "../tsconfig.json"
-}

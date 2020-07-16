@@ -8,8 +8,10 @@ export const listen: Listen = () => new Promise((resolve, reject) => {
   const options: mongoose.ConnectionOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
   };
-  console.log('URI:', MONGO_URL);
+
   mongoose.connect(MONGO_URL, options);
   mongoose.Promise = Promise;
   mongoose.set('useFindAndModify', false);
@@ -25,9 +27,16 @@ export const listen: Listen = () => new Promise((resolve, reject) => {
     }
     reject(e);
   });
-
+  db.on('disconnected', () => {
+    console.log('Mongo connection closed.');
+  });
   db.once('open', () => {
-    console.log(`MongoDB successfully connected to ${MONGO_URL}`);
+    console.log(`Mongo successfully connected.`);
     resolve(db);
+  });
+
+  process.on('SIGINT', async () => {
+    await db.close();
+    process.exit(0);
   });
 });

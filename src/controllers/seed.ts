@@ -8,36 +8,40 @@ import * as utils from '../fakers/utils';
 
 export const seed = async (req: Request, res: Response) => {
   const users = await fakers.user.mock();
-  await User.deleteMany({});
-  await User.bulkWrite(users.map(user => ({
-    insertOne: { document: user }
-  })));
-
   const customers = await fakers.customer.mock();
-  await Customer.deleteMany({});
-  await Customer.bulkWrite(customers.map(customer => ({
-    insertOne: { document: customer }
-  })));
-
   const products = await fakers.product.mock();
   const providers = await fakers.provider.mock({ products });
-  await Provider.deleteMany({});
-  await Provider.bulkWrite(providers.map(provider => ({
-    insertOne: { document: provider }
-  })));
-
   const orders = await fakers.order.mock({ customers, providers, users });
-  await Order.deleteMany({});
-  await Order.bulkWrite(orders.map(order => ({
-    insertOne: { document: order }
-  })));
 
-  if (req.query.files) {
+  if (req.body.files) {
     utils.writeFile({ data: users, key: 'users' });
     utils.writeFile({ data: customers, key: 'customers' });
     utils.writeFile({ data: providers, key: 'providers' });
     utils.writeFile({ data: orders, key: 'orders' });
   }
+
+  if (!req.body.merge) {
+    await User.deleteMany({});
+    await Customer.deleteMany({});
+    await Provider.deleteMany({});
+    await Order.deleteMany({});
+  }
+
+  await User.bulkWrite(users.map(user => ({
+    insertOne: { document: user }
+  })));
+
+  await Customer.bulkWrite(customers.map(customer => ({
+    insertOne: { document: customer }
+  })));
+
+  await Provider.bulkWrite(providers.map(provider => ({
+    insertOne: { document: provider }
+  })));
+
+  await Order.bulkWrite(orders.map(order => ({
+    insertOne: { document: order }
+  })));
 
   res.json({ message: 'ok!' });
 }

@@ -13,7 +13,9 @@ export const Schema = new mongoose.Schema({
   },
   email: {
     type: mongoose.Schema.Types.String,
-    required: true
+    lowercase: true,
+    required: true,
+    unique: true
   },
   password: {
     type: mongoose.Schema.Types.String,

@@ -6,7 +6,9 @@ import { Schema as SchemaUser } from './user';
 
 export const Schema = new mongoose.Schema({
   code: {
-    type: mongoose.Schema.Types.String
+    type: mongoose.Schema.Types.String,
+    minlength: 5,
+    maxlength: 20,
   },
   user: SchemaUser,
   customer: SchemaCustomer,
@@ -30,7 +32,8 @@ export const Schema = new mongoose.Schema({
   timestamp: {
     createdAt: {
       type: mongoose.Schema.Types.Date,
-      required: true
+      required: true,
+      default: Date.now
     },
     startedAt: {
       type: mongoose.Schema.Types.Date
