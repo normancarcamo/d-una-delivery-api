@@ -32,13 +32,14 @@ such as: cancel order, update delivery man location, rating & feedback orders.
 - Redis (to validate and refresh tokens)
 - lodash (fp utility)
 - faker (to generate random data using recent timestamps)
+- [pixabay](https://pixabay.com/) (to fetch real but random images from internet)
 
 ## Requirements
 
 1. node.js + npm - v12.18.x at the moment (lts). Try nvm if you don't want to
 waste your time.
 2. docker - this was developed in a mac using the v2.2.0.5
-3. create a dotenv file, create one using the .env.example as reference, the env variables are used by docker-compose. see [.env.example](/.env) file.
+3. create a dotenv file, create one using the .env.example as reference, the env variables are used by docker-compose. see [.env.example](/.env.example) file.
 
     NOTE: The images for the products & the providers are currently not generated unless you provide an env variable called `PIXABAY_API_KEY`, the logic to download the images is already implemented, so if the variable is set with a valid api key, it will download the images for both entities, if not, there will be an error in the console, but only as a warning, it wont be a blocker for you. Images are needed thoug, so try to sign up on [pixabay.com](https://pixabay.com/) to get an api key and avoid testing the app without images.
     - `ACCESS_TOKEN_SECRET` & `REFRESH_TOKEN_SECRET` used to generate jwt tokens, but if you want a more secure key use `crypto` module from node directly in your terminal:
