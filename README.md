@@ -7,6 +7,7 @@ of the delivery app with flutter.
 
 - [Task](#task)
 - [Requirements](#requirements)
+- [Stack](#stack)
 - [Installation](#installation)
 - [Endpoints](#endpoints)
 - [Examples](/docs/readme/examples.md)
@@ -22,6 +23,15 @@ createdAt, pickedAt, updatedAt, canceledAt, and so on.
 - Generate endpoints for consuming orders, order and update orders information,
 such as: cancel order, update delivery man location, rating & feedback orders.
 - Generate endpoints to update user information like stats, avatar, etc.
+
+## Stack
+
+- Node.js + TypeScript
+- Docker + docker-compose
+- MongoDB + mongo compass
+- Redis (to validate and refresh tokens)
+- lodash (fp utility)
+- faker (to generate random data using recent timestamps)
 
 ## Requirements
 
