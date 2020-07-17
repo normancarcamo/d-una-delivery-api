@@ -67,7 +67,7 @@ export const seedUser = async (
     const products = await fakers.product.mock();
     const providers = await fakers.provider.mock({ products });
     const orders = await fakers.order.mock({
-      max: 120,
+      max: 260,
       models: { customers, providers, users }
     });
     await Order.bulkWrite(orders.map(order => ({
