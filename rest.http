@@ -1,3 +1,7 @@
+### ping ======================================================================
+
+GET http://localhost:3000/ping
+
 ### auth ======================================================================
 
 ### REGISTER:
@@ -46,14 +50,11 @@ GET http://localhost:3000/orders
 content-type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEyMTI2NTI4NDI2YzA1MWNlNDY2NWQiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTAyMzU2MCwiZXhwIjoxNTk1MDI3MTYwLCJhdWQiOiI1ZjEyMTI2NTI4NDI2YzA1MWNlNDY2NWQiLCJpc3MiOiJ4ZWxleC5jbyJ9.bvJrAhoX78iK0NygGreLB9Cs7brsCmB23BFFePpPEL4
 
-### ping ======================================================================
-
-GET http://localhost:3000/ping
-
 ### seed ======================================================================
 
 ### If you don't send the request as POST, you get error:
 GET http://localhost:3000/seed
+content-type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEyMTI2NTI4NDI2YzA1MWNlNDY2NWQiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTAyMzU2MCwiZXhwIjoxNTk1MDI3MTYwLCJhdWQiOiI1ZjEyMTI2NTI4NDI2YzA1MWNlNDY2NWQiLCJpc3MiOiJ4ZWxleC5jbyJ9.bvJrAhoX78iK0NygGreLB9Cs7brsCmB23BFFePpPEL4
 
 ### When the request doesn't include payload, you get ok:
@@ -61,19 +62,10 @@ POST http://localhost:3000/seed
 content-type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEyMTI2NTI4NDI2YzA1MWNlNDY2NWQiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTAyMzU2MCwiZXhwIjoxNTk1MDI3MTYwLCJhdWQiOiI1ZjEyMTI2NTI4NDI2YzA1MWNlNDY2NWQiLCJpc3MiOiJ4ZWxleC5jbyJ9.bvJrAhoX78iK0NygGreLB9Cs7brsCmB23BFFePpPEL4
 
-### If you want to generate .json files:
-POST http://localhost:3000/seed
-content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEyMTI2NTI4NDI2YzA1MWNlNDY2NWQiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTAyMzU2MCwiZXhwIjoxNTk1MDI3MTYwLCJhdWQiOiI1ZjEyMTI2NTI4NDI2YzA1MWNlNDY2NWQiLCJpc3MiOiJ4ZWxleC5jbyJ9.bvJrAhoX78iK0NygGreLB9Cs7brsCmB23BFFePpPEL4
-
-{ "files": true }
-
-### If you want to merge the previous data with the new:
-POST http://localhost:3000/seed
-Content-Type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEyMTI2NTI4NDI2YzA1MWNlNDY2NWQiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTAyMzU2MCwiZXhwIjoxNTk1MDI3MTYwLCJhdWQiOiI1ZjEyMTI2NTI4NDI2YzA1MWNlNDY2NWQiLCJpc3MiOiJ4ZWxleC5jbyJ9.bvJrAhoX78iK0NygGreLB9Cs7brsCmB23BFFePpPEL4
-
-{ "merge": true }
+{
+  //"files": true,
+  //"merge": true
+}
 
 ### Seed the current user:
 POST http://localhost:3000/seed/user
