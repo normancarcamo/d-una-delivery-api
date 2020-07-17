@@ -2,6 +2,7 @@ import faker from 'faker';
 import _ from 'lodash';
 import * as types from './types';
 import * as utils from './utils';
+import { ObjectId } from 'mongodb';
 
 const MAX_PROVIDERS = 12;
 
@@ -16,6 +17,7 @@ export const mock = async ({ products }: { products: types.Product[]; }) => {
 
   for (let i = 0; i < MAX_PROVIDERS; i++) {
     providers.push({
+      _id: new ObjectId(),
       name: faker.company.companyName(),
       address: {
         latitude: +faker.address.latitude(),

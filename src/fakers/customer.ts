@@ -1,5 +1,6 @@
 import faker from 'faker';
 import * as types from './types';
+import { ObjectId } from 'mongodb';
 
 const MAX_CUSTOMERS = 600;
 
@@ -8,6 +9,7 @@ export const mock = async () => {
 
   for (let i = 0; i < MAX_CUSTOMERS; i++) {
     customers.push({
+      _id: new ObjectId(),
       name: faker.name.findName(),
       phone: faker.phone.phoneNumber(),
       address: {

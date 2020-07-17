@@ -1,47 +1,67 @@
 import { add, formatISO, sub } from 'date-fns';
 import faker from 'faker';
 import _ from 'lodash';
+import { ObjectId } from 'mongodb';
 import * as types from './types';
 
-const MAX_ORDERS = 500;
-
-export const mock = async ({ users, customers, providers } : {
-  users: Array<types.User>;
-  customers: Array<types.Customer>;
-  providers: Array<types.Provider>;
+export const mock = async ({ max, models } : {
+  max?: number;
+  models: {
+    users: Array<types.User>;
+    customers: Array<types.Customer>;
+    providers: Array<types.Provider>;
+  };
 }) => {
-  const provider = providers[_.random(providers.length) || 0];
+  const MAX_ORDERS = max || 500;
+  const { users, customers, providers } = models;
   const status: Array<types.Status> = [
     'canceled',
     'delivering',
     'delivered',
     'pending',
-    'pickedUp'
+    'pickedUp',
   ];
   const orders: Array<types.Order> = [];
 
   for (let i = 0; i < MAX_ORDERS; i++) {
+    const _provider = providers[_.random(providers.length -1)];
+    const _status = status[_.random(status.length -1)];
+    const user = users[_.random(users.length -1)];
+    const customer = customers[_.random(customers.length -1)];
+    const provider = _.omit(_provider, 'products');
+    const products = _.take(
+      _provider.products,
+      _.random(_provider.products.length -1),
+    );
+
     orders.push({
+      _id: new ObjectId(),
       code : faker.random.uuid().substring(0, 10),
-      user: users[_.random(users.length)],
-      customer: customers[_.random(customers.length)],
-      provider: _.omit(provider, 'products'),
-      products: _.take(provider.products, _.random(provider.products.length)),
-      status: status[_.random(status.length)],
+      user_id: user._id,
+      customer_id: customer._id,
+      provider_id: provider._id,
+      products: products,
+      status: _status,
       comments: _.times(_.random(5), () => faker.lorem.sentence()),
       timestamp: function () {
         const now = sub(new Date(), { minutes: _.random(30) });
         const old = sub(now, { months: _.random(5) });
         const createdAt = faker.date.between(old, now);
         const startedAt = add(createdAt, { minutes: _.random(20) });
-        const pickedUpAt = add(startedAt, { minutes: _.random(20) });
-        const deliveredAt = add(pickedUpAt, { minutes: _.random(20) });
-        return {
-          createdAt: formatISO(createdAt),
-          startedAt: [null, formatISO(startedAt)][_.random(2)],
-          pickedUpAt: [null, formatISO(pickedUpAt)][_.random(2)],
-          deliveredAt: [null, formatISO(deliveredAt)][_.random(2)]
+        const pickedAt = add(startedAt, { minutes: _.random(20) });
+        const deliveredAt = add(pickedAt, { minutes: _.random(20) });
+        const _timestamp: types.Timestamp = {
+          createdAt: formatISO(createdAt)
         };
+
+        if (_status !== 'canceled') {
+          _timestamp.startedAt = [formatISO(startedAt)][_.random(1)];
+          _timestamp.pickedAt = [formatISO(pickedAt)][_.random(1)];
+          _timestamp.deliveredAt = [formatISO(deliveredAt)][_.random(1)];
+          _timestamp.canceledAt = [formatISO(new Date())][_.random(1)];
+        }
+
+        return _timestamp;
       } ()
     });
   }

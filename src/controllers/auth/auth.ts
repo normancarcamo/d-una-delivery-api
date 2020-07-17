@@ -9,7 +9,6 @@ import {
   signRefreshToken,
   verifyRefreshToken
 } from './jwt_helpers';
-import fff from '../../redis-connection';
 
 const router = express.Router();
 

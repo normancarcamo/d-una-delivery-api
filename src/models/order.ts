@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
-import { Schema as SchemaCustomer } from './customer';
-import { Schema as SchemaProduct } from './product';
-import { Schema as SchemaProvider } from './provider';
-import { Schema as SchemaUser } from './user';
+import mongoosePaginate from 'mongoose-paginate-v2';
+import { Schema as ProductSchema } from './product';
 
 export const Schema = new mongoose.Schema({
   code: {
@@ -10,10 +8,10 @@ export const Schema = new mongoose.Schema({
     minlength: 5,
     maxlength: 20,
   },
-  user: SchemaUser,
-  customer: SchemaCustomer,
-  provider: SchemaProvider,
-  products: [ SchemaProduct ],
+  user_id: mongoose.Schema.Types.ObjectId,
+  customer_id: mongoose.Schema.Types.ObjectId,
+  provider_id: mongoose.Schema.Types.ObjectId,
+  products: [ ProductSchema ],
   status: {
     type: mongoose.Schema.Types.String,
     enum : [
@@ -38,14 +36,19 @@ export const Schema = new mongoose.Schema({
     startedAt: {
       type: mongoose.Schema.Types.Date
     },
-    pickedUpAt: {
+    pickedAt: {
       type: mongoose.Schema.Types.Date
     },
     deliveredAt: {
       type: mongoose.Schema.Types.Date
+    },
+    canceledAt: {
+      type: mongoose.Schema.Types.Date
     }
   },
 }, { strict: false });
+
+Schema.plugin(mongoosePaginate);
 
 export const Model = mongoose.model('Order', Schema);
 
