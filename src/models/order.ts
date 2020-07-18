@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 import { Schema as ProductSchema } from './product';
+import { Schema as UserSchema } from './user';
+import { Schema as CustomerSchema } from './customer';
+import { Schema as ProviderSchema } from './provider';
 
 export const Schema = new mongoose.Schema({
   code: {
@@ -8,9 +11,9 @@ export const Schema = new mongoose.Schema({
     minlength: 5,
     maxlength: 20,
   },
-  user_id: mongoose.Schema.Types.ObjectId,
-  customer_id: mongoose.Schema.Types.ObjectId,
-  provider_id: mongoose.Schema.Types.ObjectId,
+  user: UserSchema,
+  customer: CustomerSchema,
+  provider: ProviderSchema,
   products: [ ProductSchema ],
   status: {
     type: mongoose.Schema.Types.String,

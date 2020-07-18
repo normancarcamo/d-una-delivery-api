@@ -37,9 +37,9 @@ export const mock = async ({ max, models } : {
     orders.push({
       _id: new ObjectId(),
       code : faker.random.uuid().substring(0, 10),
-      user_id: user._id,
-      customer_id: customer._id,
-      provider_id: provider._id,
+      user: user,
+      customer: customer,
+      provider: provider,
       products: products,
       status: _status,
       comments: _.times(_.random(5), () => faker.lorem.sentence()),

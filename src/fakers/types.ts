@@ -70,9 +70,9 @@ export type Timestamp = {
 export type Order = {
   _id: ObjectId;
   code: string;
-  user_id: ObjectId;
-  customer_id: ObjectId;
-  provider_id: ObjectId;
+  user: User;
+  customer: Customer;
+  provider: Omit<Provider, 'products'>;
   products: Array<Product>;
   status: Status;
   comments: Array<string>;

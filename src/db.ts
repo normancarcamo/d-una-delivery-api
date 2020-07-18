@@ -15,6 +15,7 @@ export const listen: Listen = () => new Promise((resolve, reject) => {
   mongoose.connect(MONGO_URL, options);
   mongoose.Promise = Promise;
   mongoose.set('useFindAndModify', false);
+  mongoose.set('debug', true);
 
   const db = mongoose.connection;
 
