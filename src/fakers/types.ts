@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
 
 export type User = {
-  _id: ObjectId;
+  _id?: ObjectId;
   name: {
     first: string;
     last: string;
@@ -18,7 +18,7 @@ export type User = {
 }
 
 export type Customer = {
-  _id: ObjectId;
+  _id?: ObjectId;
   name: string;
   phone: string;
   address: {
@@ -29,14 +29,14 @@ export type Customer = {
 }
 
 export type Product = {
-  _id: ObjectId;
+  _id?: ObjectId;
   name: string;
   legend: string;
   photo: string;
 }
 
 export type Provider = {
-  _id: ObjectId;
+  _id?: ObjectId;
   name: string;
   address: {
     latitude: number;
@@ -57,18 +57,18 @@ export type Status =
 | 'delivering'
 | 'delivered'
 | 'pending'
-| 'pickedUp';
+| 'pickedUp'
+| 'pickingUp';
 
 export type Timestamp = {
   createdAt: string;
-  startedAt?: string;
   pickedAt?: string;
   deliveredAt?: string;
   canceledAt?: string;
 }
 
 export type Order = {
-  _id: ObjectId;
+  _id?: ObjectId;
   code: string;
   user: User;
   customer: Customer;

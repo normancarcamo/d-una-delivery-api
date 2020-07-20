@@ -9,13 +9,14 @@ export const listen: Listen = () => new Promise((resolve, reject) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-    useCreateIndex: true
+    useCreateIndex: true,
+    autoIndex: false
   };
 
   mongoose.connect(MONGO_URL, options);
   mongoose.Promise = Promise;
   mongoose.set('useFindAndModify', false);
-  mongoose.set('debug', true);
+  // mongoose.set('debug', true);
 
   const db = mongoose.connection;
 

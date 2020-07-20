@@ -4,9 +4,13 @@ import * as types from './types';
 import * as utils from './utils';
 import { ObjectId } from 'mongodb';
 
-const MAX_PROVIDERS = 12;
-
-export const mock = async ({ products }: { products: types.Product[]; }) => {
+export const mock = async ({ max, models }: {
+  max?: number;
+  models: {
+    products: types.Product[];
+  }
+}) => {
+  const MAX_PROVIDERS = max || 30;
   const photos = await utils.getPhotos({
     term: 'restaurant',
     debug: 'provider',
@@ -14,6 +18,10 @@ export const mock = async ({ products }: { products: types.Product[]; }) => {
   });
 
   const providers: Array<types.Provider> = [];
+  const _products = _.chunk(
+    models.products,
+    Math.floor(models.products.length / MAX_PROVIDERS)
+  );
 
   for (let i = 0; i < MAX_PROVIDERS; i++) {
     providers.push({
@@ -37,7 +45,7 @@ export const mock = async ({ products }: { products: types.Product[]; }) => {
       } (),
       phone: faker.phone.phoneNumber(),
       photo: photos[i],
-      products: _.take(products, Math.floor(products.length / MAX_PROVIDERS))
+      products: _products[i],
     });
   }
 

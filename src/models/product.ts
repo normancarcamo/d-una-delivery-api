@@ -1,17 +1,20 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 export const Schema = new mongoose.Schema({
   name: {
-    type: mongoose.Schema.Types.String,
+    type: String,
     required: true
   },
   legend: {
-    type: mongoose.Schema.Types.String
+    type: String
   },
   photo: {
-    type: mongoose.Schema.Types.String
+    type: String
   }
 }, { strict: false });
+
+Schema.plugin(mongoosePaginate);
 
 export const Model = mongoose.model('Product', Schema);
 

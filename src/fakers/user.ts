@@ -2,9 +2,8 @@ import faker from 'faker';
 import * as types from './types';
 import { ObjectId } from 'mongodb';
 
-const MAX_USERS = 30;
-
-export const mock = async () => {
+export const mock = async ({ max }: { max?: 30 }) => {
+  const MAX_USERS = max || 30;
   const users: Array<types.User> = [];
 
   for (let i = 0; i < MAX_USERS; i++) {

@@ -1,43 +1,46 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 import { Schema as SchemaProduct } from './product';
 
 export const Schema = new mongoose.Schema({
   name: {
-    type: mongoose.Schema.Types.String,
+    type: String,
     required: true
   },
   address: {
     streetAddress: {
-      type: mongoose.Schema.Types.String,
+      type: String,
       required: true
     },
     latitude: {
-      type: mongoose.Schema.Types.Number,
+      type: Number,
       required: true
     },
     longitude: {
-      type: mongoose.Schema.Types.Number,
+      type: Number,
       required: true
     }
   },
   timetable: {
     from: {
-      type: mongoose.Schema.Types.String,
+      type: String,
       default: '08:00'
     },
     to: {
-      type: mongoose.Schema.Types.String,
+      type: String,
       default: '17:00'
     },
   },
   phone: {
-    type: mongoose.Schema.Types.String
+    type: String
   },
   photo: {
-    type: mongoose.Schema.Types.String
+    type: String
   },
   products: [SchemaProduct]
 }, { strict: false });
+
+Schema.plugin(mongoosePaginate);
 
 export const Model = mongoose.model('Provider', Schema);
 

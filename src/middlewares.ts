@@ -56,7 +56,11 @@ export const validateToken = (jsonwebtoken: any) => async (
     const secret = process.env.ACCESS_TOKEN_SECRET as string;
     const payload = jsonwebtoken.verify(token, secret);
     req.user = await User.findOne({ _id: payload.aud });
-    next();
+    if (!req.user) {
+      next(new createError.Unauthorized());
+    } else {
+      next();
+    }
   } catch (error) {
     const message = error.name === 'JsonWebTokenError'
       ? undefined

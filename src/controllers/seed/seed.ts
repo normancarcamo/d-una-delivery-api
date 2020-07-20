@@ -5,6 +5,7 @@ import Provider from '../../models/provider';
 import User from '../../models/user';
 import * as fakers from '../../fakers';
 import * as utils from '../../fakers/utils';
+import _ from 'lodash';
 
 export const seed = async (
   req: Request,
@@ -12,14 +13,6 @@ export const seed = async (
   next: NextFunction,
 ) => {
   try {
-    const users = await fakers.user.mock();
-    const customers = await fakers.customer.mock();
-    const products = await fakers.product.mock();
-    const providers = await fakers.provider.mock({ products });
-    const orders = await fakers.order.mock({
-      models: { customers, providers, users }
-    });
-
     if (!req.body.merge) {
       await User.deleteMany({});
       await Customer.deleteMany({});
@@ -27,17 +20,28 @@ export const seed = async (
       await Order.deleteMany({});
     }
 
+    const users = await fakers.user.mock({});
+
     await User.bulkWrite(users.map(user => ({
       insertOne: { document: user }
     })));
+
+    const customers = await fakers.customer.mock({});
 
     await Customer.bulkWrite(customers.map(customer => ({
       insertOne: { document: customer }
     })));
 
+    const products = await fakers.product.mock({});
+    const providers = await fakers.provider.mock({ models: { products } });
+
     await Provider.bulkWrite(providers.map(provider => ({
       insertOne: { document: provider }
     })));
+
+    const orders = await fakers.order.mock({
+      models: { customers, providers, users }
+    });
 
     await Order.bulkWrite(orders.map(order => ({
       insertOne: { document: order }
@@ -63,12 +67,19 @@ export const seedUser = async (
 ) => {
   try {
     const users = [req.user.toJSON()];
-    const customers = await fakers.customer.mock();
-    const products = await fakers.product.mock();
-    const providers = await fakers.provider.mock({ products });
+    const customers = await fakers.customer.mock({});
+    const products = await fakers.product.mock({});
+    const providers = await fakers.provider.mock({ models: { products } });
+
     const orders = await fakers.order.mock({
-      max: 260,
-      models: { customers, providers, users }
+      max: req.body.max || 100,
+      models: { customers, providers, users },
+      status: _.defaultTo(
+        [ 'delivered', 'canceled' ],
+        Array.isArray(req.body.status)
+          && req.body.status.length
+          && req.body.status
+      )
     });
     await Order.bulkWrite(orders.map(order => ({
       insertOne: { document: order }

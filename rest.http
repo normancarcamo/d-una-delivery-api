@@ -1,10 +1,12 @@
 ### ping ======================================================================
 
 GET http://localhost:3000/ping
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTA0NTI0MSwiZXhwIjoxNTk1MDQ4ODQxLCJhdWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJpc3MiOiJ4ZWxleC5jbyJ9.FyjyX2AXkmYBbI-ouAQErW3Ib-0F4LXspBLmrECRn-E
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTIyMDQ2NCwiZXhwIjoxNTk1MjI0MDY0LCJhdWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJpc3MiOiJ4ZWxleC5jbyJ9.OBwrM-Cq6xq6581cdqroAFOksFjkq3WryQX1FgZFxdg
 
 ### auth ======================================================================
 
+### 1....
+### 2.
 ### REGISTER:
 POST http://localhost:3000/auth/register
 Content-Type: application/json
@@ -22,6 +24,7 @@ Content-Type: application/json
   }
 }
 
+### 3.
 ### LOGIN:
 POST http://localhost:3000/auth/login
 Content-Type: application/json
@@ -34,42 +37,63 @@ Content-Type: application/json
 ### LOGOUT:
 DELETE http://localhost:3000/auth/logout
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTA0NTI0MSwiZXhwIjoxNTk1MDQ4ODQxLCJhdWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJpc3MiOiJ4ZWxleC5jbyJ9.FyjyX2AXkmYBbI-ouAQErW3Ib-0F4LXspBLmrECRn-E
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTIyMDQ2NCwiZXhwIjoxNTk1MjI0MDY0LCJhdWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJpc3MiOiJ4ZWxleC5jbyJ9.OBwrM-Cq6xq6581cdqroAFOksFjkq3WryQX1FgZFxdg
 
 ### REFRESH TOKEN:
 POST http://localhost:3000/auth/refresh-token
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTA0NTI0MSwiZXhwIjoxNTk1MDQ4ODQxLCJhdWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJpc3MiOiJ4ZWxleC5jbyJ9.FyjyX2AXkmYBbI-ouAQErW3Ib-0F4LXspBLmrECRn-E
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTIyMDQ2NCwiZXhwIjoxNTk1MjI0MDY0LCJhdWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJpc3MiOiJ4ZWxleC5jbyJ9.OBwrM-Cq6xq6581cdqroAFOksFjkq3WryQX1FgZFxdg
 
 {
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTUwNDUyNDEsImV4cCI6MTYyNjYwMjg0MSwiYXVkIjoiNWYxMjc1Nzk2MDNhYTMwOTEzOTY2NzE5IiwiaXNzIjoieGVsZXguY28ifQ.amax43RZRPef_pSoeI2v72gYNqMuNLim8f38KPFk4P0"
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTUyMjA0NjQsImV4cCI6MTYyNjc3ODA2NCwiYXVkIjoiNWYxM2JjNDZmZTIzYTkwMmJlMTQ0MjYzIiwiaXNzIjoieGVsZXguY28ifQ.VNJyavJAquizLpEgZFDB-XGJyDwM-trpzUVf87SRTZI"
 }
 
 ### orders ====================================================================
 
-### Get all orders from the current user logged with pagination.
+### Get all orders:
 GET http://localhost:3000/orders
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTA0NTI0MSwiZXhwIjoxNTk1MDQ4ODQxLCJhdWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJpc3MiOiJ4ZWxleC5jbyJ9.FyjyX2AXkmYBbI-ouAQErW3Ib-0F4LXspBLmrECRn-E
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTIyMDQ2NCwiZXhwIjoxNTk1MjI0MDY0LCJhdWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJpc3MiOiJ4ZWxleC5jbyJ9.OBwrM-Cq6xq6581cdqroAFOksFjkq3WryQX1FgZFxdg
 
-### Get stats, counts, totals:
-GET http://localhost:3000/orders/stats
+### Create order:
+POST http://localhost:3000/orders
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTA0NTI0MSwiZXhwIjoxNTk1MDQ4ODQxLCJhdWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJpc3MiOiJ4ZWxleC5jbyJ9.FyjyX2AXkmYBbI-ouAQErW3Ib-0F4LXspBLmrECRn-E
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTIyMDQ2NCwiZXhwIjoxNTk1MjI0MDY0LCJhdWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJpc3MiOiJ4ZWxleC5jbyJ9.OBwrM-Cq6xq6581cdqroAFOksFjkq3WryQX1FgZFxdg
+
+### Get pending order:
+GET http://localhost:3000/orders/pending
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTIyMDQ2NCwiZXhwIjoxNTk1MjI0MDY0LCJhdWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJpc3MiOiJ4ZWxleC5jbyJ9.OBwrM-Cq6xq6581cdqroAFOksFjkq3WryQX1FgZFxdg
+
+### Update order status: [canceled | delivering | delivered | pending | pickedUp | pickingUp]
+PATCH http://localhost:3000/orders/5f14e566a33022064d34752a?status=canceled
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTIyMDQ2NCwiZXhwIjoxNTk1MjI0MDY0LCJhdWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJpc3MiOiJ4ZWxleC5jbyJ9.OBwrM-Cq6xq6581cdqroAFOksFjkq3WryQX1FgZFxdg
 
 ### seed ======================================================================
 
-### seed all users
+### 2....
+### 1.
 POST http://localhost:3000/seed
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTA0NTI0MSwiZXhwIjoxNTk1MDQ4ODQxLCJhdWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJpc3MiOiJ4ZWxleC5jbyJ9.FyjyX2AXkmYBbI-ouAQErW3Ib-0F4LXspBLmrECRn-E
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTIyMDQ2NCwiZXhwIjoxNTk1MjI0MDY0LCJhdWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJpc3MiOiJ4ZWxleC5jbyJ9.OBwrM-Cq6xq6581cdqroAFOksFjkq3WryQX1FgZFxdg
 
 {
   //"files": true,
   //"merge": true
 }
 
+### 3....
+### 4.
 ### Seed only the current user:
 POST http://localhost:3000/seed/user
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTA0NTI0MSwiZXhwIjoxNTk1MDQ4ODQxLCJhdWQiOiI1ZjEyNzU3OTYwM2FhMzA5MTM5NjY3MTkiLCJpc3MiOiJ4ZWxleC5jbyJ9.FyjyX2AXkmYBbI-ouAQErW3Ib-0F4LXspBLmrECRn-E
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJuYW1lIjp7ImZpcnN0IjoiTm9ybWFuIiwibGFzdCI6IkNhcmNhbW8ifSwiZW1haWwiOiJub3JtYW5jYXJjYW1vQGdtYWlsLmNvbSIsImlhdCI6MTU5NTIyMDQ2NCwiZXhwIjoxNTk1MjI0MDY0LCJhdWQiOiI1ZjEzYmM0NmZlMjNhOTAyYmUxNDQyNjMiLCJpc3MiOiJ4ZWxleC5jbyJ9.OBwrM-Cq6xq6581cdqroAFOksFjkq3WryQX1FgZFxdg
+
+{
+  "max": 60,
+  "status": [
+    "canceled",
+    "delivered"
+  ]
+}

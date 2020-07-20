@@ -1,3 +1,4 @@
+import faker from 'faker';
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 import { Schema as ProductSchema } from './product';
@@ -7,51 +8,62 @@ import { Schema as ProviderSchema } from './provider';
 
 export const Schema = new mongoose.Schema({
   code: {
-    type: mongoose.Schema.Types.String,
+    type: String,
     minlength: 5,
-    maxlength: 20,
+    maxlength: 20
   },
   user: UserSchema,
   customer: CustomerSchema,
   provider: ProviderSchema,
   products: [ ProductSchema ],
   status: {
-    type: mongoose.Schema.Types.String,
+    type: String,
     enum : [
       'canceled',
       'delivering',
       'delivered',
       'pending',
-      'pickedUp'
+      'pickedUp',
+      'pickingUp'
     ],
     default: 'pending',
     required: true
   },
   comments: [{
-    type: mongoose.Schema.Types.String
+    type: String
   }],
   timestamp: {
     createdAt: {
-      type: mongoose.Schema.Types.Date,
+      type: Date,
       required: true,
       default: Date.now
     },
-    startedAt: {
-      type: mongoose.Schema.Types.Date
-    },
     pickedAt: {
-      type: mongoose.Schema.Types.Date
+      type: Date
     },
     deliveredAt: {
-      type: mongoose.Schema.Types.Date
+      type: Date
     },
     canceledAt: {
-      type: mongoose.Schema.Types.Date
+      type: Date
     }
   },
 }, { strict: false });
 
 Schema.plugin(mongoosePaginate);
+
+Schema.virtual('id').get(function(this: { _id: any }) {
+  return this._id;
+});
+
+// Schema.methods.generateCode = function() {
+//   return faker.finance.account();
+// };
+
+// Schema.pre('save', function() {
+//   console.log('pre.save...')
+//   // this.set({ code: faker.finance.account() });
+// });
 
 export const Model = mongoose.model('Order', Schema);
 

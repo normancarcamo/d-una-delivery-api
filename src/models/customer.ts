@@ -1,29 +1,32 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 export const Schema = new mongoose.Schema({
   name: {
-    type: mongoose.Schema.Types.String,
+    type: String,
     required: true
   },
   phone: {
-    type: mongoose.Schema.Types.String,
+    type: String,
     required: true
   },
   address: {
     streetAddress: {
-      type: mongoose.Schema.Types.String,
+      type: String,
       required: true
     },
     latitude: {
-      type: mongoose.Schema.Types.Number,
+      type: Number,
       required: true
     },
     longitude: {
-      type: mongoose.Schema.Types.Number,
+      type: Number,
       required: true
     }
   }
 }, { strict: false });
+
+Schema.plugin(mongoosePaginate);
 
 export const Model = mongoose.model('Customer', Schema);
 

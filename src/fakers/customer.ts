@@ -2,9 +2,8 @@ import faker from 'faker';
 import * as types from './types';
 import { ObjectId } from 'mongodb';
 
-const MAX_CUSTOMERS = 600;
-
-export const mock = async () => {
+export const mock = async ({ max }: { max?: number }) => {
+  const MAX_CUSTOMERS = max || 600;
   const customers: Array<types.Customer> = [];
 
   for (let i = 0; i < MAX_CUSTOMERS; i++) {

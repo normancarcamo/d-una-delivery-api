@@ -7,14 +7,10 @@ import ordersController from './controllers/orders';
 
 const router = express.Router();
 
-router.use(validateToken(jsonwebtoken));
-
-router.use('/auth', authController);
-
-router.use('/orders', ordersController);
-
 router.route('/ping').all((req, res) => res.send('pong'));
-
+router.use(validateToken(jsonwebtoken));
+router.use('/auth', authController);
+router.use('/orders', ordersController);
 router.route('/seed').post(seedController.seed).all(notAllowed);
 router.route('/seed/user').post(seedController.seedUser).all(notAllowed);
 
